@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
+import matplotlib.colors as mcolors
 
 # Title
 st.title("Custom Histogram and Bar Chart Generator")
@@ -28,8 +29,14 @@ if uploaded_file is not None:
     # Font size selection
     font_size = st.slider("Font size", min_value=8, max_value=24, value=12)
 
-    # Bar color selection
-    bar_color = st.color_picker("Select bar color", "#0072B2")
+    # Bar color selection: User can type a color name or select from predefined 20 colors
+    color_options = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white', 'purple', 'pink', 
+                     'orange', 'brown', 'gray', 'olive', 'navy', 'teal', 'lime', 'indigo', 'gold', 'maroon']
+    bar_color = st.text_input("Enter a color name (or choose from options below)", value="blue")
+    selected_color = st.selectbox("Or select a color from the list", color_options)
+
+    # If user typed a valid color name, use that, otherwise use the selected color
+    final_color = bar_color if bar_color in mcolors.CSS4_COLORS else selected_color
 
     # Legend placement selection
     legend_position = st.selectbox("Select legend position", options=["upper right", "upper left", "lower right", "lower left", "center", "best"])
@@ -64,13 +71,21 @@ if uploaded_file is not None:
         if plot_type == "Histogram":
             # Plot histograms for each selected column
             for column in columns:
-                ax.hist(data[column], bins=bins, alpha=0.5, label=column, orientation=orientation, color=bar_color)
+                ax.hist(data[column], bins=bins, alpha=0.5, label=column, orientation=orientation, color=final_color)
 
         elif plot_type == "Bar Chart":
-            # Plot the counts for each selected column
-            for column in columns:
+            # Bar positions and width
+            x = np.arange(len(labels))  # Label locations
+            width = 0.35  # Width of the bars
+
+            # Plot bars for both columns, side by side
+            for i, column in enumerate(columns):
                 category_counts = data[f"Category-{column}"].value_counts().reindex(labels, fill_value=0)
-                ax.bar(category_counts.index, category_counts.values, alpha=0.7, label=column, color=bar_color)
+                ax.bar(x + i * width, category_counts.values, width, label=column, color=final_color)
+
+            # Set x-axis tick labels
+            ax.set_xticks(x + width / 2)
+            ax.set_xticklabels(labels)
 
         # Customize labels, title, and font sizes
         ax.set_xlabel(x_label, fontsize=font_size)
