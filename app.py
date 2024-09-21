@@ -14,8 +14,8 @@ if uploaded_file is not None:
     data = pd.read_csv(uploaded_file)
     st.write("Data Preview:", data.head())
 
-    # Column selection
-    column = st.selectbox("Select column for plotting", data.columns)
+    # Multi-column selection
+    columns = st.multiselect("Select one or more columns for plotting", data.columns)
 
     # Plot type selection (Histogram or Bar Chart)
     plot_type = st.selectbox("Select plot type", options=["Histogram", "Bar Chart"])
@@ -23,13 +23,6 @@ if uploaded_file is not None:
     if plot_type == "Histogram":
         # User input for bin size if Histogram is selected
         bins = st.slider("Select number of bins", min_value=5, max_value=100, value=30)
-    else:
-        # Custom range selection for Bar Chart
-        min_value = st.number_input("Minimum value", value=float(data[column].min()))
-        max_value = st.number_input("Maximum value", value=float(data[column].max()))
-
-        # Number of categories (classes)
-        num_categories = st.slider("Select number of categories", min_value=2, max_value=20, value=5)
 
     # Custom axis labels and title
     x_label = st.text_input("X-axis label", value="Values")
@@ -48,24 +41,23 @@ if uploaded_file is not None:
         fig, ax = plt.subplots()
 
         if plot_type == "Histogram":
-            ax.hist(data[column], bins=bins, orientation=orientation)
+            # Plot histograms for each selected column
+            for column in columns:
+                ax.hist(data[column], bins=bins, alpha=0.5, label=column, orientation=orientation)
         elif plot_type == "Bar Chart":
-            # Define the range of values
-            bins = np.linspace(min_value, max_value, num_categories + 1)
-
-            # Group data into categories based on the range
-            categories = pd.cut(data[column], bins=bins, include_lowest=True)
-
-            # Count occurrences in each category
-            category_counts = categories.value_counts(sort=False)
-
-            # Generate bar chart with categories
-            ax.bar(category_counts.index.astype(str), category_counts.values)
+            # Group data into categories based on value counts for each column
+            for column in columns:
+                value_counts = data[column].value_counts()
+                ax.bar(value_counts.index, value_counts.values, alpha=0.5, label=column)
 
         # Customize labels, title, and font sizes
         ax.set_xlabel(x_label, fontsize=font_size)
         ax.set_ylabel(y_label, fontsize=font_size)
         ax.set_title(title, fontsize=font_size)
+
+        # Add legend if multiple columns are plotted
+        if len(columns) > 1:
+            ax.legend()
 
         # Display the plot in Streamlit
         st.pyplot(fig)
