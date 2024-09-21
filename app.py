@@ -32,11 +32,14 @@ if uploaded_file is not None:
     # Bar color selection: User can type a color name or select from predefined 20 colors
     color_options = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black', 'white', 'purple', 'pink', 
                      'orange', 'brown', 'gray', 'olive', 'navy', 'teal', 'lime', 'indigo', 'gold', 'maroon']
-    bar_color = st.text_input("Enter a color name (or choose from options below)", value="blue")
+    bar_color = st.text_input("Enter a default color name (or choose from options below)", value="blue")
     selected_color = st.selectbox("Or select a color from the list", color_options)
 
-    # If user typed a valid color name, use that, otherwise use the selected color
+    # If user typed a valid color name, use that; otherwise, use the selected color
     final_color = bar_color if bar_color in mcolors.CSS4_COLORS else selected_color
+
+    # Generate different colors for each column if multiple columns are selected
+    column_colors = [final_color] * len(columns) if len(columns) == 1 else plt.cm.get_cmap('tab20', len(columns)).colors
 
     # Legend placement selection
     legend_position = st.selectbox("Select legend position", options=["upper right", "upper left", "lower right", "lower left", "center", "best"])
@@ -70,18 +73,18 @@ if uploaded_file is not None:
 
         if plot_type == "Histogram":
             # Plot histograms for each selected column
-            for column in columns:
-                ax.hist(data[column], bins=bins, alpha=0.5, label=column, orientation=orientation, color=final_color)
+            for i, column in enumerate(columns):
+                ax.hist(data[column], bins=bins, alpha=0.5, label=column, orientation=orientation, color=column_colors[i])
 
         elif plot_type == "Bar Chart":
             # Bar positions and width
             x = np.arange(len(labels))  # Label locations
             width = 0.35  # Width of the bars
 
-            # Plot bars for both columns, side by side
+            # Plot bars for both columns, side by side with different colors
             for i, column in enumerate(columns):
                 category_counts = data[f"Category-{column}"].value_counts().reindex(labels, fill_value=0)
-                ax.bar(x + i * width, category_counts.values, width, label=column, color=final_color)
+                ax.bar(x + i * width, category_counts.values, width, label=column, color=column_colors[i])
 
             # Set x-axis tick labels
             ax.set_xticks(x + width / 2)
