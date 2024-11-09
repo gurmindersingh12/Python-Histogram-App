@@ -6,13 +6,13 @@
 
 ### Features
 
-<b>1. File Upload:</b> Upload your own CSV file to visualize data.</p>
-<b>2. Plot Type Selection:</b> Choose between Histogram and Bar Chart.</p>
-<b>3. Column Selection:</b> Choose which columns from the CSV file to visualize.</p>
-<b>4. Axis Labels and Title Customization:</b> Customize x-axis label, y-axis label, and plot title.</p>
-<b>5. Font Size Adjustment:</b> Control font size for axis labels and title.</p>
-<b>6. Color Customization:</b> Select or enter colors for bars, with multiple options.</p>
-<b>7. Legend Position:</b> Choose where to place the legend on the plot.</p>
-<b>8. Category Ranges (for Bar Chart):</b> Define custom categories for percentage values.</p>
-<b>9. Orientation Selection (for Histogram):</b> Choose between vertical and horizontal orientations.</p>
-<b>10. Download Plot:</b> Save the plot as a high-resolution TIFF file.</p>
+1. <b>File Upload:</b> Upload your own CSV file to visualize data.</p>
+2. <b>Plot Type Selection:</b> Choose between Histogram and Bar Chart.</p>
+3. <b>Column Selection:</b> Choose which columns from the CSV file to visualize.</p>
+4. <b>Axis Labels and Title Customization:</b> Customize x-axis label, y-axis label, and plot title.</p>
+5. <b>Font Size Adjustment:</b> Control font size for axis labels and title.</p>
+6. <b>Color Customization:</b> Select or enter colors for bars, with multiple options.</p>
+7. <b>Legend Position:</b> Choose where to place the legend on the plot.</p>
+8. <b>Category Ranges (for Bar Chart):</b> Define custom categories for percentage values.</p>
+9. <b>Orientation Selection (for Histogram):</b> Choose between vertical and horizontal orientations.</p>
+10. <b>Download Plot:</b> Save the plot as a high-resolution TIFF file.</p>
