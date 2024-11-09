@@ -1,7 +1,7 @@
 # Custom Histogram and Bar Chart Generator
 
 
-#### Welcome to the Histogram and Bar Chart Generator! This Python-based web app allows users to easily create histograms and bar charts from their data files. Simply upload a CSV file, select the column you want to visualize, generate a visuals instantly, and download the generated plot as a high-resolution TIFF file.
+Welcome to the Histogram and Bar Chart Generator! This Python-based web app allows users to easily create histograms and bar charts from their data files. Simply upload a CSV file, select the column you want to visualize, generate a visuals instantly, and download the generated plot as a high-resolution TIFF file.
 
 
 ### Features
@@ -63,4 +63,33 @@ Select one or more columns to include in the plot. Only numeric columns are elig
 4. Legend Position: Select the position for the legend. Options include: `upper right`, `upper left`, `lower right`, `lower left`, `center`, and `best`.
 
 
+#### E. Specific Options Based on Plot Type
+1. Histogram
+1.1. Bins: Use the slider to select the number of bins for the histogram.
+1.2. Orientation: Choose between vertical or horizontal orientation for the histogram bars.
+
+2. Bar Chart
+Category Ranges:
+2.1. Define minimum and maximum values for the first and last categories.
+2.2. Select the number of categories using the slider.
+2.3. The application will dynamically create bins and labels for each category ran
     
+#### F. Generate Plot
+
+After setting all options, click the Generate Plot button. The plot will be displayed in the Streamlit application window.
+
+
+#### G. Download Plot
+
+After generating the plot, a Download button will appear. Click the button to save the plot as a high-resolution TIFF file.
+
+
+### Example Workflow
+
+1. Upload a `CSV file` with columns containing numeric data you want to visualize.
+2. Select Bar Chart as the plot type.
+3. Choose columns, customize the color and title, and define category ranges (e.g., 0-25%, 26-50%, etc.).
+4. Click Generate Plot to visualize.
+5. Download the plot as a TIFF file if desired.
+
+   
