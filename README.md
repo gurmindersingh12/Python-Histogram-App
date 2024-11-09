@@ -43,39 +43,24 @@ streamlit run app.py
 
 
 ### Usage
-#### 1. File Upload
-    Upload your CSV file by clicking on the Upload your CSV file button.
-    Once the file is uploaded, a data preview will appear to ensure the data is loaded correctly.
+#### A. File Upload
+1. Upload your CSV file by clicking on the Upload your CSV file button.
+2. Once the file is uploaded, a data preview will appear to ensure the data is loaded correctly.
 
-2. Plot Type Selection
+#### B. Plot Type Selection
+Choose the type of plot:
+1. Histogram: Plots the frequency distribution of a single column.
+2. Bar Chart: Displays counts for custom percentage ranges across selected columns.
 
-    Choose the type of plot:
-        Histogram: Plots the frequency distribution of a single column.
-        Bar Chart: Displays counts for custom percentage ranges across selected columns.
+#### C. Column Selection
+Select one or more columns to include in the plot. Only numeric columns are eligible.
 
-3. Column Selection
 
-    Select one or more columns to include in the plot. Only numeric columns are eligible.
-
-4. Customization Options
-Axis Labels and Title
-
-    Customize the X-axis and Y-axis labels and add a descriptive Plot title.
-
-Font Size
-
-    Adjust the font size for the plot elements (axis labels and title) using the slider.
-
-Color Selection
-
-    You can:
-        Type a color name in the text input box, or
-        Choose a predefined color from a dropdown list.
-
-Legend Position
-
-    Select the position for the legend. Options include:
-        upper right, upper left, lower right, lower left, center, and best.
+#### D. Customization Options
+1. Axis Labels and Title: Customize the `X-axis` and `Y-axis` labels and add a descriptive `Plot title`.
+2. Font Size: Adjust the font size for the plot elements (axis labels and title) using the slider.
+3. Color Selection: Type a color name in the text input box, or Choose a predefined color from a dropdown list.
+4. Legend Position: Select the position for the legend. Options include: `upper right`, `upper left`, `lower right`, `lower left`, `center`, and `best`.
 
 
     
