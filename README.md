@@ -87,9 +87,18 @@ After generating the plot, a Download button will appear. Click the button to sa
 ### Example Workflow
 
 1. Upload a `CSV file` with columns containing numeric data you want to visualize.
-2. Select Bar Chart as the plot type.
+2. Select `Bar Chart` as the plot type.
 3. Choose columns, customize the color and title, and define category ranges (e.g., 0-25%, 26-50%, etc.).
-4. Click Generate Plot to visualize.
+4. Click `Generate Plot` to visualize.
 5. Download the plot as a TIFF file if desired.
+
+### Troubleshooting
+
+1. Ensure your CSV file has numeric data in columns for histogram or bar chart generation.
+2. If the file upload doesn’t work, verify the file format and try again.
+
+### Contributing
+
+Feel free to submit issues or pull requests if you have suggestions for new features or enhancements.
 
    
